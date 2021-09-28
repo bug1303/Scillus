@@ -383,7 +383,11 @@ plot_stat <- function(dataset,
                       tilt_text = FALSE) {
         
         if (is.data.frame(pal_setup)) {
-                pal <- pal_setup[pal_setup[[1]] == group_by,][[2]]
+                if (plot_type == "prop_fill") {
+                        pal <- pal_setup[pal_setup[[1]] == "seurat_clusters", ][[2]]
+                } else {
+                        pal <- pal_setup[pal_setup[[1]] == group_by,][[2]]
+                }
         } else {
                 pal <- pal_setup
         }
